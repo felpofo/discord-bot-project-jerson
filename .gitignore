@@ -1,0 +1,4 @@
+node_modules/
+config.js
+etc.md
+yarn.lock
