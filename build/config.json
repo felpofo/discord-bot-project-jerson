@@ -1,0 +1,20 @@
+{
+    "token": "ODIwNDc4MDQ0MzU5NDkxNjA2.YE1vuQ.zsTvgLWubC-P09Nieq-EdGUsyFg",
+    "channel": {
+        "id": "897880498804752456"
+    },
+    "debug": false,
+    "prefix": "cj.",
+    "webhook": {
+        "enabled": false,
+        "url": "https://discord.com/api/webhooks/896072997985714196/Moq_WHIs_mWpSCSDwgRre7P_J2LOLHJJc5Y0hZVAzx2o7TyD-FOxrrKxxIITqP2T6wcF",
+        "type": 1,
+        "id": "896072997985714196",
+        "name": "Jerson",
+        "avatar": "37a09f1f1c831629012d7ab52283da39",
+        "channel_id": "895780407474290768",
+        "guild_id": "805580004112072714",
+        "application_id": null,
+        "token": "Moq_WHIs_mWpSCSDwgRre7P_J2LOLHJJc5Y0hZVAzx2o7TyD-FOxrrKxxIITqP2T6wcF"
+    }
+}

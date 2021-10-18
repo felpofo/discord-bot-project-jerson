@@ -1,7 +1,7 @@
 {
   "name": "openbot",
   "version": "1.0.21a",
-  "main": ".",
+  "main": "build/index.js",
   "type": "module",
   "author": {
     "name": "felpofo",
@@ -11,29 +11,43 @@
   "readme": "./README.me",
   "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Error: no build specified\" && exit 1",
-    "lint": "node_modules/.bin/eslint --fix .",
-    "dev": "node . ODk1NzU5NjY5MTQ0OTkzODM0.YV9PMw.Ps5iGDKJAgDmwyGhNRzwaC638GE 895780407474290768",
-    "start": "node ."
+    "test": "node_modules/.bin/jest",
+    "lint": "node_modules/.bin/eslint --ext .ts --fix .",
+    "build": "node_modules/.bin/tsc --build",
+    "build:types": "tsc -d --declarationDir build --declarationMap --emitDeclarationOnly",
+    "dev": "yarn build && node . ODk1NzU5NjY5MTQ0OTkzODM0.YV9PMw.Ps5iGDKJAgDmwyGhNRzwaC638GE 895780407474290768",
+    "start": "yarn build && node ."
   },
   "engines": {
     "node": ">=14.18.0"
   },
   "dependencies": {
-    "@types/dateformat": "^3.0.1",
+    "axios": "^0.23.0",
     "colors": "^1.4.0",
     "dateformat": "^5.0.1",
     "discord.js": "12.5.3",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "ffmpeg-static": "^4.4.0",
     "jest": "^27.2.5",
-    "prompt-sync": "^4.2.0",
-    "readline": "^1.3.0"
+    "opusscript": "^0.0.8",
+    "readline": "^1.3.0",
+    "ytdl-core": "^4.9.1"
   },
   "devDependencies": {
+    "@types/colors": "^1.2.1",
+    "@types/dateformat": "^3.0.1",
+    "@types/ejs": "^3.1.0",
     "@types/eslint": "^7.28.1",
+    "@types/express": "^4.17.13",
+    "@types/ffmpeg-static": "^3.0.0",
+    "@types/jest": "^27.0.2",
+    "@types/prompt-sync": "^4.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.0",
-    "eslint-plugin-import": "^2.25.2"
+    "eslint-plugin-import": "^2.25.2",
+    "ts-node": "^10.3.0",
+    "typescript": "^4.4.4"
   }
 }

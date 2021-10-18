@@ -1,6 +1,6 @@
 # Setup  
 
-## There's three ways to start the bot, and the first is creating `config.json` file and it seems like it:  
+## Create `config.json` file:  
 
 > - {  
 >   - "token": "\<your-bot-token\>",  
@@ -21,15 +21,12 @@
 >     - "token": "\<token\>"  
 >   - }  
 > - }  
+- ### **The essential option is `prefix`, others can be removed**  
 
-## The second is directaly inserting, and will always be prioritized, followed by config file  
+## If you don't want to put token in config.json:
 - ## **e.g.** `node . \<token\> \<channel\>`  
 - ## **or** `node . \<token\>`  
 - ## **or** `yarn start` with pre-configurated token and/or channel  
-
-## The third way is absolving set token, and when you start the program it will ask the `token` and `channel id` from command line, you can skip channel  
-
-- ### **The essential option is `prefix`, others can be removed, but i highly recommend set `token` from here, its more pratical**  
 
 - ### The `channel id` is for send messages from your bot from <u>command line</u>, you can set it later if you want  
 
