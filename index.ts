@@ -14,7 +14,7 @@ import * as readline from "readline";
 import "colors";
 import { readFileSync, readdirSync } from "fs";
 
-import * as u from "./utils.js";
+import * as u from "./utils";
 const app = JSON.parse(readFileSync("./package.json").toString());
 const config = JSON.parse(readFileSync("./config.json").toString()); 
 

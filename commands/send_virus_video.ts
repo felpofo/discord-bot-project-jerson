@@ -5,7 +5,7 @@ export default {
   name: "virus",
   description: "Send \"your computer has virus\" video",
   usage: "virus [@user]",
-  execute: (message: Message) => {
+  execute: async (message: Message) => {
     if (message.channel.type != "dm") {
       message.channel.bulkDelete(1);
 

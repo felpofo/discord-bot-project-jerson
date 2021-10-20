@@ -5,7 +5,7 @@ export default {
   name: "rmrole",
   description: "Removes a role from a user.",
   usage: "rmrole <user> <role name>",
-  execute: (message: Message, args: Array<string>) => {
+  execute: async (message: Message, args: Array<string>) => {
     if (message.member.id != "414196720101228545")
       if (!message.member.hasPermission("MANAGE_ROLES"))
         return message.reply("You don't have permission to do that!");

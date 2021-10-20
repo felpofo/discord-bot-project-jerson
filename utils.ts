@@ -1,7 +1,7 @@
-import { TextChannel, User, Message, Snowflake, DMChannel } from "discord.js";
+import { TextChannel, User, Message, Snowflake, DMChannel, Collection } from "discord.js";
 import "colors";
 
-import { client, config } from "./index.js";
+import { client, config } from "./index";
 const log = console.log;
 
 export function info(text: string) {
@@ -110,35 +110,50 @@ export function exit(exit_code: number) {
   process.exit(exit_code || 0);
 }
 
-interface IQueue {
-  url?: string;
-  title?: string;
-  duration?: number;
-  thumbnail?: string;
-  requester?: string;
+export interface IQueue {
+  songs: {
+    id?: string;
+    url?: string;
+    title?: string;
+    duration?: number;
+    thumbnail?: string;
+    requester?: string;
+  }
+
+  loop?: boolean;
+
   channel?: string;
-  id?: string;
 }
 
 export class Queue {
-  queue: IQueue[];
+  queue: Collection<number, IQueue>;
+
+  constructor () {
+    console.log(this.queue);
+  }
 
   add(song_url: string): void {
-    this.queue.push({
-      url: song_url,
-      title: "",
-      duration: 0,
-      thumbnail: "",
-      requester: "",
-      channel: "",
-      id: "",
-    });
+    // asd
   }
-  remove(song_id: string): void {}
-  clear(): void {}
-  shuffle(): void {}
-  loop(): void {}
-  isEmpty(): boolean | void {}
-  isLooping(): boolean | void {}
-
+  remove(song_id: string): void {
+    // asd
+  }
+  shuffle(): void {
+    // asd
+  }
+  clear(): void {
+    // asd
+  }
+  is_empty(): boolean | void {
+    // asd
+  }
+  loop(): void {
+    // asd
+  }
+  loop_queue(): void {
+    // asd
+  }
+  is_looping(): boolean | void {
+    // asd
+  }
 }

@@ -1,57 +1,29 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
   "compilerOptions": {
-    "incremental": true,
-    "target": "ES6",
-    "module": "ES2020",
-    "allowJs": true,
-    "checkJs": false,
-    "jsx": "react",
-    "declaration": false,
-    "declarationMap": false,
-    "sourceMap": false,
-    "outDir": "build",
-    "composite": false,
-    "removeComments": true,
-    "noEmit": false,
-    "importHelpers": false,
-    "downlevelIteration": false,
-    "isolatedModules": false,
+    "target": "ES2017",
+    "module": "ESNext",
+    "lib": ["ES2020"],
+    
     "strict": false,
-    "noImplicitAny": true,
-    "strictNullChecks": false,
-    "strictFunctionTypes": false,
-    "strictBindCallApply": false,
-    "strictPropertyInitialization": false,
-    "noImplicitThis": false,
-    "alwaysStrict": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": false,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": false,
-    "esModuleInterop": false,
-    "preserveSymlinks": false,
-    "allowUmdGlobalAccess": false,
-    "inlineSourceMap": false,
-    "inlineSources": false,
-    "experimentalDecorators": false,
-    "newLine": "lf",
-    "forceConsistentCasingInFileNames": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
+    "allowJs": true,
     "resolveJsonModule": true,
-    "lib": [
-      "ES2020",
-      "DOM",
-      "ES7"
-    ]
+    "moduleResolution": "node",
+    "typeRoots": ["@types", "node_modules/@types"],
+    "outDir": "./build",
+    
+    "esModuleInterop": true,
+
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
   },
   "include": [
-    "**/*.ts",
     "config.json",
     "package.json",
     "assets/*",
-    "@types/discord.js/queue.ts"
   ]
 }

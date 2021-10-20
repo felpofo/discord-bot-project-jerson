@@ -4,7 +4,7 @@ export default {
   name: "purge",
   description: "Purge messages",
   usage: "purge <number>",
-  execute: (message: Message, args: Array<string>) => {
+  execute: async (message: Message, args: Array<string>) => {
     if (message.channel.type != "dm") {
       if (message.member.id != "414196720101228545")
         if (!message.member.hasPermission("MANAGE_MESSAGES"))

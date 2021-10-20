@@ -15,7 +15,7 @@
     "lint": "node_modules/.bin/eslint --ext .ts --fix .",
     "build": "node_modules/.bin/tsc --build",
     "build:types": "tsc -d --declarationDir build --declarationMap --emitDeclarationOnly",
-    "dev": "yarn build && node . ODk1NzU5NjY5MTQ0OTkzODM0.YV9PMw.Ps5iGDKJAgDmwyGhNRzwaC638GE 895780407474290768",
+    "dev": "node_modules/.bin/ts-node-dev index.ts ODIwNDc4MDQ0MzU5NDkxNjA2.YE1vuQ.0ZXS8cRiat_Ozy48THz-uVgflfc 895780407474290768",
     "start": "yarn build && node ."
   },
   "engines": {
@@ -48,6 +48,7 @@
     "eslint": "^8.0.0",
     "eslint-plugin-import": "^2.25.2",
     "ts-node": "^10.3.0",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.4"
   }
 }

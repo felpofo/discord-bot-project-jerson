@@ -5,7 +5,7 @@ export default {
   name: "sex",
   description: "Send \"sex\" video",
   usage: "sex [@user]",
-  execute: (message: Message) => {
+  execute: async (message: Message) => {
     if (message.channel.type != "dm") { 
       message.channel.bulkDelete(1);
 
