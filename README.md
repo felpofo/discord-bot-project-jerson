@@ -1,3 +1,5 @@
+# NOT FINISHED DONT WORKS
+
 # Setup  
 
 ## Create `config.json` file:  
