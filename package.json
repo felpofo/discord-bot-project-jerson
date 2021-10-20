@@ -5,7 +5,6 @@
   "type": "module",
   "author": {
     "name": "felpofo",
-    "email": "felpo@outlook.com",
     "url": "https://github.com/felpofo"
   },
   "readme": "./README.me",
@@ -47,7 +46,10 @@
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.0",
     "eslint-plugin-import": "^2.25.2",
+<<<<<<< HEAD
     "ts-node": "^10.3.0",
+=======
+>>>>>>> e40770e70751b29022fb72fb1ff35e3a90f3ead1
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.4"
   }

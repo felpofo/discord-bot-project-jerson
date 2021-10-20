@@ -1,7 +1,6 @@
 node_modules/
 build/
-config.js
-etc.md
+config.json
 yarn.lock
 yarn-error.log
 package.json
