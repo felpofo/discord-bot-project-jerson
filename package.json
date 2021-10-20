@@ -1,7 +1,7 @@
 {
   "name": "openbot",
   "version": "1.0.21a",
-  "main": "build/index.js",
+  "main": "build/src/app.js",
   "type": "module",
   "author": {
     "name": "felpofo",
@@ -14,8 +14,8 @@
     "lint": "node_modules/.bin/eslint --ext .ts --fix .",
     "build": "node_modules/.bin/tsc --build",
     "build:types": "tsc -d --declarationDir build --declarationMap --emitDeclarationOnly",
-    "dev": "node_modules/.bin/ts-node-dev index.ts",
-    "start": "yarn build && node ."
+    "dev": "node_modules/.bin/ts-node-dev --exit-child src/app.ts",
+    "start": "rm -rf build; yarn build && node ."
   },
   "engines": {
     "node": ">=14.18.0"
