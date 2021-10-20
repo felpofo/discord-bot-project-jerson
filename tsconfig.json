@@ -14,8 +14,8 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "typeRoots": ["src/@types", "node_modules/@types"],
-    "outDir": "./build",
-    "rootDir": "src",
+    "outDir": "build/",
+    "rootDir": "src/",
     
     "esModuleInterop": true,
 
@@ -23,7 +23,8 @@
     "forceConsistentCasingInFileNames": true,
   },
   "include": [
-    // "src/",
-    "config.json",
+    "src/**/*.ts",
+    "src/assets/*",
+    "src/config.json",
   ]
 }
