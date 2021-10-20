@@ -60,8 +60,6 @@ export function set() {
   log("> chat  - define o chat".yellow);
 }
 
-export function set_chat(id: string): void { throw new Error("Not implemented"); }
-
 export function set_category(id: Snowflake, permission: string): void { throw new Error("Not implemented"); }
 
 export function get() {

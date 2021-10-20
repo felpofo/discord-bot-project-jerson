@@ -12,7 +12,6 @@ export function log_message(chat: string, user: string, message: string): void;
 export function send_bot_message(message: string): void;
 
 export function set(): void;
-export function set_chat(id: string): void;
 export function set_category(id: Snowflake, permission: string): void;
 
 export function get(): void;

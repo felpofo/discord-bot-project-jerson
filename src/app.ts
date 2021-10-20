@@ -9,13 +9,17 @@
 
 //#region //? IMPORTS ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-import { Client, WebhookClient, MessageAttachment, Collection } from "discord.js";
-import * as readline from "readline";
+import "dotenv/config";
 import "colors";
+
+import { Client, WebhookClient, MessageAttachment, Collection, Snowflake, WebhookTypes } from "discord.js";
 import { readFileSync, readdirSync } from "fs";
 
+import readline from "readline";
+import axios from "axios";
+
 import * as u from "./utils";
-const config = JSON.parse(readFileSync("./config.json").toString()); 
+// const config = JSON.parse(readFileSync("./src/config.json").toString()); 
 
 const log = console.log;
 
@@ -23,31 +27,36 @@ const log = console.log;
 
 //#region //? VARIABLES AND INITIALIZATION |||||||||||||||||||||||||||||||||||||||||||||||||||
 
-if (config.debug == undefined) config.debug == false;
-
-if (!config.channel)
-  config.channel = {
-    id: undefined,
+const config = {
+  token: process.env.TOKEN,
+  prefix: process.env.PREFIX,
+  debug: process.env.DEBUG ? true : false,
+  channel: {
+    id: process.env.CHANNEL_ID,
     name: undefined,
-  };
+  },
+  webhook: {
+    enabled: process.env.WEBHOOK_ENABLED ? true : false,
+    url: process.env.WEBHOOK_URL
+  },
+};
+
+if (!config.token) {
+  u.error("Token not found!".red);
+  process.exit(1);
+}
+
+if (!config.debug) config.debug = false;
+
+if (!config.prefix) config.prefix = "cj.";
 
 if (!config.webhook.enabled) {
-  config.webhook.enabled = false;
-  u.warn("Webhook disabled".yellow.underline);
-} else u.warn("Webhook enabled".yellow.underline);
+  if (config.debug) u.warn("Webhook disabled".yellow.underline);
+} else { if (config.debug) u.warn("Webhook enabled".yellow.underline); }
 
-if (process.argv[2]) {
-  if (process.argv[3]) String(process.argv[3]);
-  config.token = String(process.argv[2]);
-} else {
-  if (!config.token) {
-    u.error("No Token Provided");
-    u.exit(1);
-  }  
-  if (!config.channel.id) {
-    u.error("No channel ID provided. Please set it in config.json");
-    u.exit(1);
-  }
+if (!config.channel.id) {
+  if (config.debug) u.warn("No channel ID provided.".yellow.underline);
+  u.exit(1);
 }
 
 const client = new Client();
@@ -74,10 +83,20 @@ for (const file of commandFiles) {
 //#region //? WEBHOOK ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 if (config.webhook.enabled) {
-  const webhook = new WebhookClient(
-    config.webhook.id,
-    config.webhook.token
-  );
+  interface IWebhookInfo {
+    type: WebhookTypes;
+    id: Snowflake;
+    name: string;
+    avatar: string;
+    channel_id: Snowflake;
+    guild_id: Snowflake;
+    application_id: unknown;
+    token: string;
+  }
+  
+  const webhook_infos = await axios.get<IWebhookInfo>(config.webhook.url).then((res) => res.data);
+
+  const webhook = new WebhookClient(webhook_infos.id, webhook_infos.token);
   if (webhook.id) u.info("Webhook Initializated".yellow.underline);
 }
 
