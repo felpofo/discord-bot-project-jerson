@@ -27,4 +27,4 @@
 
 - ### There isn't much to show with debug mode, so for now it just shows loaded commands  
 
-- ## To close the program press `ctrl + z` or type `exit`, `ctrl + c` skip the line  
+- ### To close the program press `ctrl + z` or type `exit`, `ctrl + c` skip the line  
