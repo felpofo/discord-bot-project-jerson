@@ -1,7 +1,7 @@
 {
   "name": "openbot",
-  "version": "1.0.21a",
-  "main": "build/app.js",
+  "version": "0.1.21",
+  "main": "src/app",
   "type": "module",
   "author": {
     "name": "felpofo",
@@ -12,10 +12,10 @@
   "scripts": {
     "test": "node_modules/.bin/jest",
     "lint": "node_modules/.bin/eslint --ext .ts --fix .",
-    "build": "node_modules/.bin/tsc",
+    "build": "rm -rf build; node_modules/.bin/tsc && cp .env build",
     "build:types": "tsc -d --declarationDir build --declarationMap --emitDeclarationOnly",
-    "dev": "node_modules/.bin/ts-node-dev --exit-child src/app.ts",
-    "start": "rm -rf build; yarn build && node ."
+    "dev": "node_modules/.bin/ts-node-dev --exit-child src/app",
+    "start": "cd build && ts-node app"
   },
   "engines": {
     "node": ">=14.18.0"
@@ -23,7 +23,6 @@
   "dependencies": {
     "axios": "^0.23.0",
     "colors": "^1.4.0",
-    "dateformat": "^5.0.1",
     "discord.js": "12.5.3",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",

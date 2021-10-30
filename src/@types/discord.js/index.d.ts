@@ -1,5 +1,5 @@
 import { Client, Message } from "discord.js";
-import { Queue } from "../../utils";
+import { Queue } from "../../app/utils";
 
 
 interface Command {

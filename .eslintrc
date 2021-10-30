@@ -27,13 +27,14 @@
             "unix"
         ],
         "quotes": [
-            "error",
+            "warn",
             "double"
         ],
         "semi": [
             "error",
             "always"
         ],
-        "import": "off"
+        "import": "off",
+        "@typescript-eslint/no-unused-vars": "off"
     }
 }
