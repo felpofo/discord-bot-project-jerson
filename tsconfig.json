@@ -34,8 +34,10 @@
     "forceConsistentCasingInFileNames": true,
   },
   "include": [
-    "src/**/*.ts",
-    "src/assets/**/*",
-    "./.env"
-  ]
+    "**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+  ],
 }
