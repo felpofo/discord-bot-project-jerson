@@ -18,10 +18,7 @@
         "sourceType": "module"
     },
     "rules": {
-        "indent": [
-            "error",
-            2
-        ],
+        "indent": "off",
         "linebreak-style": [
             "error",
             "unix"
@@ -35,6 +32,6 @@
             "always"
         ],
         "import": "off",
-        "@typescript-eslint/no-unused-vars": "off"
+        "@typescript-eslint/no-unused-vars": "off",
     }
 }
