@@ -49,46 +49,63 @@ export default {
           return console.log(err.red);
         })
         .finally(() => {
-          message.guild.channels.cache.forEach(async (channel) => {
-            await channel.createOverwrite(muterole, {
-              SEND_MESSAGES: false,
-              SEND_MESSAGES_IN_THREADS: false,
-              CREATE_PUBLIC_THREADS: false,
-              CREATE_PRIVATE_THREADS: false,
-              EMBED_LINKS: false,
-              ATTACH_FILES: false,
-              ADD_REACTIONS: false,
-              USE_EXTERNAL_EMOJIS: false,
-              USE_EXTERNAL_STICKERS: false,
-              MENTION_EVERYONE: false,
-              MANAGE_MESSAGES: false,
-              MANAGE_THREADS: false,
-              SEND_TTS_MESSAGES: false,
-              USE_APPLICATION_COMMANDS: false,
+          if (muterole)
+            message.guild.channels.cache.forEach(async (channel) => {
+              await channel.createOverwrite(muterole, {
+                SEND_MESSAGES: false,
+                SEND_MESSAGES_IN_THREADS: false,
+                CREATE_PUBLIC_THREADS: false,
+                CREATE_PRIVATE_THREADS: false,
+                EMBED_LINKS: false,
+                ATTACH_FILES: false,
+                ADD_REACTIONS: false,
+                USE_EXTERNAL_EMOJIS: false,
+                USE_EXTERNAL_STICKERS: false,
+                MENTION_EVERYONE: false,
+                MANAGE_MESSAGES: false,
+                MANAGE_THREADS: false,
+                SEND_TTS_MESSAGES: false,
+                USE_APPLICATION_COMMANDS: false,
 
-              SPEAK: false,
-              STREAM: false,
-              START_EMBEDDED_ACTIVITIES: false,
-              USE_VAD: false,
-              PRIORITY_SPEAKER: false,
-              MUTE_MEMBERS: false,
-              DEAFEN_MEMBERS: false,
-              MOVE_MEMBERS: false,
+                SPEAK: false,
+                STREAM: false,
+                START_EMBEDDED_ACTIVITIES: false,
+                USE_VAD: false,
+                PRIORITY_SPEAKER: false,
+                MUTE_MEMBERS: false,
+                DEAFEN_MEMBERS: false,
+                MOVE_MEMBERS: false,
+              });
             });
-          });
         }));
 
     if (member.roles.cache.has(muterole.id))
       return await message.channel.send("This user is already muted!");
+
     member.roles.add(muterole.id);
-    await message.channel.send(
-      new MessageEmbed()
-        .setTitle("Mute")
-        .setColor("#dd9299")
-        .setThumbnail(member.user.displayAvatarURL())
-        .setDescription(
-          `**Member:** ${member.user.tag}\n**Moderator:** ${message.author.tag}\n**Reason:** ${reason}`
-        )
-    );
+
+    const embed = new MessageEmbed();
+    embed.title = "Mute";
+    embed.color = parseInt("dd9299", 16);
+    embed.setThumbnail(member.user.displayAvatarURL());
+    embed.fields = [
+      {
+        name: "User",
+        value: member.user.tag,
+        inline: false,
+      },
+      {
+        name: "Moderator",
+        value: message.author.tag,
+        inline: false,
+      },
+      {
+        name: "Reason",
+        value: reason,
+        inline: false,
+      },
+    ];
+
+    await message.channel.send(embed);
   },
 };

@@ -1,19 +1,18 @@
 import { Client, Message } from "discord.js";
-import { Queue } from "../../app/utils";
 
+import { Queue } from "../../app/utils";
 
 interface Command {
   name: string;
   description: string;
   usage: string;
-  aliases?: string[];
-  execute(message: Message, args: string[], client: Client): void;
+  aliases?: Array<string>;
+  execute: (message: Message, args: Array<string>, client: Client) => Promise<void>;
 }
 
 declare module "discord.js" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface PermissionOverwriteOption
-    extends Partial<Record<UpdatedPermissionString, boolean | null>> {}
+  interface PermissionOverwriteOption extends Partial<Record<UpdatedPermissionString, boolean | null>> { }
 
   type UpdatedPermissionString =
     | "CREATE_INSTANT_INVITE"

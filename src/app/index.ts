@@ -110,12 +110,10 @@ for (const file of commandFiles) {
 
 //#region //? DISCORD EVENTS |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-client.once("ready", () => {
+client.once("ready", async () => {
   u.info(`Logged in as ${client.user.tag.magenta.underline}`);
-  if (config.channel.id) {
-    u.update_chat(config.channel.id, false);
-    u.get_chat();
-  }
+  if (config.channel.id)
+    await u.update_chat(config.channel.id, false).then(u.get_chat);
 });
 
 client.on("message", async (message) => {
@@ -126,11 +124,9 @@ client.on("message", async (message) => {
       new MessageAttachment(readFileSync("./assets/sex.mp4"), "SPOILER_sex.mp4")
     );
 
-  if (
-    message.channel.type == "text" &&
-    message.embeds[0] &&
-    message.author.id != client.user.id
-  ) {
+  if (message.channel.type == "dm" || message.author.id) return;
+
+  if (message.embeds[0] && message.author.id != client.user.id) {
     const regex = /<\w*:\w*:\d*>\s*[^\w:<>]*/g;
     const embed = message.embeds[0];
 
@@ -199,8 +195,6 @@ rl.commands = {
   send: (args: Array<string>) => u.send_bot_message(args.join(" ")),
   set: () => u.set(),
   set_chat: (args: Array<string>) => u.update_chat(String(args[0])),
-  set_category: (args: Array<string>) =>
-    u.set_category(String(args[0]), String(args[1])),
   get: () => u.get(),
   get_chat: () => u.get_chat(),
   debug: (args: Array<string>) => u.debug(String(args[0])),

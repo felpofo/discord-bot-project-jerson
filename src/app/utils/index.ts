@@ -1,14 +1,5 @@
 import "colors";
-import {
-  TextChannel,
-  User,
-  Message,
-  Snowflake,
-  DMChannel,
-  Collection,
-  Client,
-  NewsChannel,
-} from "discord.js";
+import { User, Message, Snowflake, Collection, Client } from "discord.js";
 import axios from "axios";
 
 import { client, config } from "..";
@@ -29,19 +20,15 @@ export function error(text: string) {
 
 export function log_message(message: Message) {
   if (message.channel.type == "dm")
-    log(`[ ${message.author.username} ] ${message.content}`);
-  else
-    log(
-      `[ ${message.channel.name.magenta.bold} ] ${message.author.username.underline}: ${message.content}`
-    );
+    log(`[ ${message.author.username.magenta.bold} ] ${message.content}`);
+  else if (message.channel.type == "text")
+    log(`[ ${message.channel.name.magenta.bold} ] ${message.author.username.underline}: ${message.content}`);
+  else if (message.channel.type == "news")
+    return;
 }
 
-export function update_chat(id: Snowflake, log = true) {
-  config.channel.id = undefined;
-  config.channel.name = undefined;
-
-  if (!id) return warn("Digite um ID");
-  if (id.length != 18) return warn("ID inválido");
+export async function update_chat(id: Snowflake, log = true) {
+  if (!id || id.length != 18) return warn("ID inválido");
 
   client.guilds.cache.forEach((value) => {
     const channel = value.channels.cache.get(String(id));
@@ -52,33 +39,25 @@ export function update_chat(id: Snowflake, log = true) {
   });
 
   if (log) {
-    if (!config.channel.id) return error("Chat não encontrado");
-    return info(
-      "Chat atualizado para: " + config.channel.name.magenta.underline
-    );
+    if (!config.channel.id) error("Chat não encontrado");
+    else info(`Chat atualizado para: ${config.channel.name.magenta.underline}`);
   }
 }
 
-export function send_bot_message(message: string) {
+export async function send_bot_message(message: string) {
   if (message == "") return warn("Mensagem vazia");
   if (!config.channel.id) return warn("Chat não definido");
 
-  try {
-    client.channels.cache.get(config.channel.id).send(message);
-  } catch (err) {
-    error("Erro ao enviar a mensagem");
-    error(err);
-  }
+  await client.channels.cache
+    .get(config.channel.id)
+    .send(message)
+    .catch((err) => error(err));
 }
 
 export function set() {
   log("Comandos:".bold);
   log("set     - define alguma configuraçao".yellow);
   log("> chat  - define o chat".yellow);
-}
-
-export function set_category(id: Snowflake, permission: string): void {
-  throw new Error("Not implemented");
 }
 
 export function get() {
@@ -92,16 +71,16 @@ export function get_chat() {
   info(`Chat ID: ${config.channel.id.magenta.underline}`);
 }
 
-export function debug(mode: "on" | "off" | string) {
+export function debug(mode: string) {
   if (mode == "on") config.debug = true;
   else if (mode == "off") config.debug = false;
-  else if (mode) {
+  else {
     log("debug  - mostra o status do modo debug".yellow);
     log("> on   - liga o modo debug".yellow);
     log("> off  - desliga o modo debug".yellow);
   }
 
-  log(`Modo debug: ${config.debug ? "true".green : "false".red}`);
+  log("\nModo debug: ".bold + `${config.debug ? "true".green : "false".red}`);
 }
 
 export function clear() {
