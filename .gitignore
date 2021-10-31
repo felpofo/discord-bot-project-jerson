@@ -1,7 +1,6 @@
 node_modules/
 build/
-src/config.json
 
-*.env*
+*.env
 yarn.lock
 yarn-error.log
